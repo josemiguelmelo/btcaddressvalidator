@@ -1,4 +1,4 @@
-package bitcoinaddressvalidator
+package btcaddressvalidator
 
 import (
 	"bytes"

@@ -1,4 +1,4 @@
-module github.com/josemiguelmelo/bitcoinaddressvalidator
+module github.com/josemiguelmelo/btcaddressvalidator
 
 go 1.15
 
