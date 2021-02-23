@@ -20,7 +20,7 @@ before_script:
 
 stages:
   - name: test
-  - name: coverage
+  - name: test_and_coverage
     if: branch = master
   - name: deploy
     if: branch = master
@@ -31,8 +31,9 @@ jobs:
       script:
         - golangci-lint run
         - make test
-    - stage: coverage
+    - stage: test_and_coverage
       script:
+        - make test
         - make coverage
         - bash <(curl -Ls https://coverage.codacy.com/get.sh) report --project-token $CODACY_PROJECT_TOKEN -r coverage/coverage.xml
 
