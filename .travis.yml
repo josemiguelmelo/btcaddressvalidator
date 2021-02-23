@@ -16,10 +16,24 @@ notifications:
 
 before_script:
   - go install github.com/golangci/golangci-lint/cmd/golangci-lint
+  - go install github.com/t-yuki/gocover-cobertura
 
-script:
-  - golangci-lint run
-  - make test
+stages:
+  - name: test
+  - name: coverage
+    if: branch = master
+    
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - golangci-lint run
+        - make test
+    - stage: coverage
+      script:
+        - make coverage
+        - bash <(curl -Ls https://coverage.codacy.com/get.sh) report --project-token $CODACY_PROJECT_TOKEN -r coverage/coverage.xml
 
 before_deploy:
   - git config --global user.email "builds@travis-ci.com"
