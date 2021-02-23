@@ -6,7 +6,12 @@ go-get:
 .PHONY: test
 test:
 	@echo " > Testing ..."
-	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) GO111MODULE=on go test ./...
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) GO111MODULE=on go test -coverprofile=cover.out ./...
+
+.PHONY: coverage
+coverage:
+	mkdir -p coverage
+	gocover-cobertura < cover.out > coverage/coverage.xml
 
 .PHONY: gofmt
 gofmt:
