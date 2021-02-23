@@ -14,7 +14,6 @@ import (
 type BitcoinAddressType struct {
 	Address  string
 	IsBech32 bool
-	Segwit   bool
 	Type     string
 	Network  string
 }
